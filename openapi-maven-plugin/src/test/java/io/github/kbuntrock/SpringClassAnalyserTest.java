@@ -62,6 +62,7 @@ import io.github.kbuntrock.resources.endpoint.recursive.GenericRecursiveInterfac
 import io.github.kbuntrock.resources.endpoint.recursive.GenericRecursiveListDtoController;
 import io.github.kbuntrock.resources.endpoint.recursive.RecursiveDtoController;
 import io.github.kbuntrock.resources.endpoint.recursive.RecursiveDtoInParameterController;
+import io.github.kbuntrock.resources.endpoint.spring.MultipleProducedContentTypes;
 import io.github.kbuntrock.resources.endpoint.spring.OptionalController;
 import io.github.kbuntrock.resources.endpoint.spring.ResponseEntityController;
 import io.github.kbuntrock.resources.endpoint.time.TimeController;
@@ -865,6 +866,15 @@ public class SpringClassAnalyserTest extends AbstractTest {
 
 		final List<File> generated = mojo.documentProject();
 		checkGenerationResult("ut/SpringClassAnalyserTest/query_param_flat_mix_nested_binding.yml", generated.get(0));
+	}
+
+	@Test
+	public void multiple_produced_content_type() throws MojoFailureException, IOException, MojoExecutionException {
+
+		final DocumentationMojo mojo = createBasicMojo(MultipleProducedContentTypes.class.getCanonicalName());
+
+		final List<File> generated = mojo.documentProject();
+		checkGenerationResult("ut/SpringClassAnalyserTest/multiple_produced_content_type.yml", generated.get(0));
 	}
 
 	@Test
